@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: apps-project
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: apps project
+  sourceRepos:
+  - '*'
+  namespaceResourceWhitelist:
+  - group: "*"
+    kind: "*"
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+    - namespace: '*'
+      server: https://kubernetes.default.svc
