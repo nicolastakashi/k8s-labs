@@ -20,7 +20,7 @@ spec:
           project: 100
           rootApplication: 200
           namespace: 300
-          application: 600
+          application: 400
       valueFiles: 
         - values.yaml
     repoURL: {{ .source.url }}
