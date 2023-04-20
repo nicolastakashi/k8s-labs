@@ -15,6 +15,12 @@ spec:
   source:
     helm:
       releaseName: {{ .source.releaseName }}
+      values: |-
+        waves:
+          project: 100
+          rootApplication: 200
+          namespace: 300
+          application: 600
       valueFiles: 
         - values.yaml
     repoURL: {{ .source.url }}
