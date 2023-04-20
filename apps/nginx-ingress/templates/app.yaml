@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.namespace.name }}-app
+  namespace: "argocd"
+  annotations:
+    argocd.argoproj.io/sync-wave: "600"
+spec:
+  destination:
+    namespace: {{ .Values.namespace.name  }}
+    server: https://kubernetes.default.svc
+  project: apps-project
+  source:
+    repoURL: {{ .Values.application.source.url }}
+    targetRevision: {{ .Values.application.source.targetRevision }}
+    path: {{ .Values.application.source.path }}
+    helm:
+      releaseName: "nginx-ingress"
+      {{- with .Values.application }}
+      values: |
+        {{- unset . "source" | toYaml | nindent 8 }}
+      {{- end }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: -1

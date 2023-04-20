@@ -1,2 +1,32 @@
 namespace:
   name: nginx-ingress
+
+application:
+  source:
+    url: https://github.com/kubernetes/ingress-nginx.git
+    targetRevision: helm-chart-4.6.0
+    path: ./charts/ingress-nginx
+  controller:
+    updateStrategy:
+      type: "RollingUpdate"
+      rollingUpdate:
+        maxUnavailable: 1
+    hostPort:
+      enabled: true
+    terminationGracePeriodSeconds: 0
+    service:
+      type: "NodePort"
+    watchIngressWithoutClass: true
+    nodeSelector:
+      ingress-ready: "true"
+    tolerations:
+      - key: "node-role.kubernetes.io/master"
+        operator: "Equal"
+        effect: "NoSchedule"
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Equal"
+        effect: "NoSchedule"
+    publishService:
+      enabled: false
+    extraArgs:
+      publish-status-address: "localhost"
