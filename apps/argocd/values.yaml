@@ -7,6 +7,16 @@ application:
     targetRevision: argo-cd-5.28.0
     path: ./charts/argo-cd
   global:
+    revisionHistoryLimit: 0
     logging:
       format: json
+      level: warn
+  server:
+    extraArgs: 
+      - --insecure
+    ingress:
+      enabled: true
+      ingressClassName: "nginx"
+      hosts:
+        - argocd.ntakashi.com
       level: warn
