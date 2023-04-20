@@ -1,2 +1,8 @@
 namespace:
   name: argocd
+
+application:
+  source:
+    url: https://github.com/argoproj/argo-helm.git
+    targetRevision: argo-cd-5.28.0
+    path: ./charts/argo-cd
