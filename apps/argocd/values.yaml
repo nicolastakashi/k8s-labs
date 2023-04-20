@@ -6,3 +6,7 @@ application:
     url: https://github.com/argoproj/argo-helm.git
     targetRevision: argo-cd-5.28.0
     path: ./charts/argo-cd
+  global:
+    logging:
+      format: json
+      level: warn
