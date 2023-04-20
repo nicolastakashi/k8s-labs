@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.name }}
   annotations:
     argocd.argoproj.io/sync-wave: "300"
-    ntakashi.com/live: true
+    ntakashi.com/live: "true"
   {{- if .Values.labels }}
   labels:
   {{- range $key, $value := .Values.labels }}
