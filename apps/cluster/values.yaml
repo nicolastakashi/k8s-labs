@@ -5,3 +5,9 @@ apps:
       targetRevision: main
       url: https://github.com/nicolastakashi/k8s-labs.git
       path: ./apps/argocd
+  - name: nginx-ingress
+    source:
+      releaseName: nginx-ingress
+      targetRevision: main
+      url: https://github.com/nicolastakashi/k8s-labs.git
+      path: ./apps/nginx-ingress
